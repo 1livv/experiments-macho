@@ -27,7 +27,7 @@ MachHeader::MachHeader(FILE *file)
     FileUtils::readUint32(file, &reserved);
 
 }
-uint32_t MachHeader::getIs32()
+bool MachHeader::getIs32()
 {
   return is_32;
 }
@@ -71,5 +71,7 @@ uint32_t MachHeader::getReserved()
 {
   if(!is_32)
     return reserved;
+
+  //throws exception
   return -1;
 }

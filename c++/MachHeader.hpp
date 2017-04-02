@@ -25,7 +25,7 @@ public:
   MachHeader(FILE *file);
 
   /****getter*******/
-  uint32_t getIs32();
+  bool getIs32();
   uint32_t getMagic();
   uint32_t getCpuType();
   uint32_t getCpuSubType();
