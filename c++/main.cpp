@@ -17,6 +17,15 @@ void print_segments(LoadCommandParser<T> parser)
 	puts("--------");
 }
 
+template<class T>
+void print_libraries(LoadCommandParser<T> parser)
+{
+	puts("== Libraries ==");
+
+	for(uint32_t i = 0; i < parser.lib_cmds.size(); i++)
+		puts(parser.lib_cmds[i].getName());
+}
+
 void print_header(MachHeader header)
 {
 	if (header.getMagic() == MAGIC_32)
@@ -52,10 +61,12 @@ int main(int argc, char *argv[])
 	if (header.getMagic() == MAGIC_32) {
 		LoadCommandParser<uint32_t> lcp(file, header.getNcmds());
 		print_segments(lcp);
+		print_libraries(lcp);
 	}
 	if (header.getMagic() == MAGIC_64) {
 		LoadCommandParser<uint64_t> lcp(file, header.getNcmds());
 		print_segments(lcp);
+		print_libraries(lcp);
 	}
 	return 0;
 }
